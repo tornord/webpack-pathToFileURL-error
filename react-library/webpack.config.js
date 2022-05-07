@@ -12,6 +12,9 @@ module.exports = (env) => {
     target: env.production ? "node" : "web",
     resolve: {
       extensions: [".ts", ".tsx", ".js"],
+      fallback: {
+        url: require.resolve("url"),
+      },
     },
     module: {
       rules: [
