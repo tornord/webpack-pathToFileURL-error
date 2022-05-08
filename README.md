@@ -1,12 +1,13 @@
-# webpack-pathToFileURL-error
+# Webpack pathToFileURL error
 
-Repo used to reproduce Webpack pathToFileURL error.
+Repo used to reproduce a Webpack 5 error: "require('url').pathToFileURL is not a function".
 
-When I run a webpack generated react component library in a create-react-app it's missing pathToFileURL function in "url".
+When I run a webpack generated react component library in a create-react-app it's missing pathToFileURL function in "url". This line of code is generated in "webpack":
+https://github.com/webpack/webpack/blob/45e8873ca62d6fd18425546673de801db1bbd55f/lib/node/RequireChunkLoadingRuntimeModule.js#L38
 
 ## Background
 
-I have created a simple react component that contains a font asset. A web page is created in the component library using webpack serve (and webpack target="web"). It works fine. Then I export the library to another react-app project (webpack target="node"). The same component code then crashes. In the react app it tries to invoke pathToFileURL from url. I guess it's a polyfill problem but it doesn't help adding `fallback: { url: require.resolve("node:url") }` or `fallback: { url: require.resolve("url") }`.
+I have created a simple react component that contains a font asset. A web page is created in the component library and when using webpack serve (and webpack target="web"), it works fine. Then I export the library to a create-react-app project (webpack target="node"). The same component code then crashes. In the react app it tries to invoke pathToFileURL from url. I guess it's a polyfill problem but it doesn't help adding `fallback: { url: require.resolve("url") }` or `fallback: { url: require.resolve("node:url") }`.
 
 ## Steps to reproduce
 
