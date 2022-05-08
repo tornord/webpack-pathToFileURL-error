@@ -13,7 +13,7 @@ module.exports = (env) => {
     resolve: {
       extensions: [".ts", ".tsx", ".js"],
       fallback: {
-        url: require.resolve("url"),
+        url: require.resolve("url/"),
       },
     },
     module: {
