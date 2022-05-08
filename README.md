@@ -7,7 +7,7 @@ https://github.com/webpack/webpack/blob/45e8873ca62d6fd18425546673de801db1bbd55f
 
 ## Background
 
-I have created a simple react component that contains a font asset. A web page is created in the component library and when using webpack serve (and webpack target="web"), it works fine. Then I export the library to a create-react-app project (webpack target="node"). The same component code then crashes. In the react app it tries to invoke pathToFileURL from url. I guess it's a polyfill problem but it doesn't help adding `fallback: { url: require.resolve("url") }` or `fallback: { url: require.resolve("node:url") }`.
+I have created a simple react component that contains a font asset. A web page is created in the component library and when using webpack serve (and webpack target="web"), it works fine. Then I export the library to a create-react-app project (webpack target="node"). There the same component code crashes. In the react app it tries to invoke pathToFileURL from url. I guess it's a polyfill problem but it doesn't help adding `fallback: { url: require.resolve("url/") }`. The error is related to a font file that is loaded as "asset/resource". Without loading the font the create-react-app works.
 
 ## Steps to reproduce
 
